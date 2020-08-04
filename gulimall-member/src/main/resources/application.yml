@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.160.128:3306/gulimall_ums?serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto  # 设置mybatis-plus默认生成键为自增
+
+server:
+  port: 10003
+logging:
+  level:
+    com.codeyyt.gulimail: debug   # 设置当前区域日志打印级别为debug
