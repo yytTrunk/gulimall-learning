@@ -1,10 +1,10 @@
-package com.codeyyt.gulimall.gulimallcommon;
+package com.codeyyt.gulimall.gateway;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GulimallCommonApplicationTests {
+class GulimallGatewayApplicationTests {
 
     @Test
     void contextLoads() {

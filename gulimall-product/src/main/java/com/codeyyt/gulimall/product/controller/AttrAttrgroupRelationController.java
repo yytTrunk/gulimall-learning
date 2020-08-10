@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.codeyyt.gulimall.product.fegin.MemberFeignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,8 +16,6 @@ import com.codeyyt.gulimall.product.entity.AttrAttrgroupRelationEntity;
 import com.codeyyt.gulimall.product.service.AttrAttrgroupRelationService;
 import com.codeyyt.gulimall.common.utils.PageUtils;
 import com.codeyyt.gulimall.common.utils.R;
-
-
 
 /**
  * 属性&属性分组关联
@@ -30,6 +29,16 @@ import com.codeyyt.gulimall.common.utils.R;
 public class AttrAttrgroupRelationController {
     @Autowired
     private AttrAttrgroupRelationService attrAttrgroupRelationService;
+
+    @Autowired
+    private MemberFeignService memberFeignService;
+
+    // TODO test rpc
+    @RequestMapping("/test")
+    public R test() {
+        R r = memberFeignService.list("hello");
+        return r;
+    }
 
     /**
      * 列表
