@@ -9,11 +9,16 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 /**
  * 解决跨域
  *
- * @author yytDD
+ * @author codeyyt
  */
 @Configuration
 public class GulimallCorsConfiguration {
 
+    /**
+     * 解决跨域,需要注释掉原来renren-fast里的跨域代码
+     *
+     * @author codeyyt
+     */
     @Bean
     public CorsWebFilter corsWebFilter(){
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

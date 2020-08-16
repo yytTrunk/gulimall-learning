@@ -21,4 +21,4 @@ server:
   port: 10000
 logging:
   level:
-    com.codeyyt.gulimail: debug   # 设置当前区域日志打印级别为debug
+    root: debug   # 设置当前区域日志打印级别为debug

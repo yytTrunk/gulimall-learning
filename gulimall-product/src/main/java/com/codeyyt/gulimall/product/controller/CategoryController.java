@@ -1,6 +1,7 @@
 package com.codeyyt.gulimall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -32,14 +33,17 @@ public class CategoryController {
     private CategoryService categoryService;
 
     /**
-     * 列表
+     * 列表,并查出所有子分类，以树形结构进行组装
+     *
+     *  查询表对应 pmc_category
+     *  1-2-3级别
+     *  比如：手机（1级）--->手机通讯(34)、运行商、手机配件（2级）---> （手机，对讲机）属于34 （3级）
      */
-    @RequestMapping("/list")
-    //@RequiresPermissions("product:category:list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = categoryService.queryPage(params);
-
-        return R.ok().put("page", page);
+    @RequestMapping("/list/tree")
+    public R list(){
+        // 查出所有数据
+        List<CategoryEntity> entities = categoryService.listWithTree();
+        return R.ok().put("data", entities);
     }
 
 
@@ -51,7 +55,7 @@ public class CategoryController {
     public R info(@PathVariable("catId") Long catId){
 		CategoryEntity category = categoryService.getById(catId);
 
-        return R.ok().put("category", category);
+        return R.ok().put("data", category);
     }
 
     /**
@@ -76,15 +80,22 @@ public class CategoryController {
         return R.ok();
     }
 
+    @RequestMapping("/update/sort")
+    //@RequiresPermissions("product:category:update")
+    public R updateSort(@RequestBody CategoryEntity[] category){
+        categoryService.updateBatchById(Arrays.asList(category));
+        return R.ok();
+    }
+
     /**
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("product:category:delete")
     public R delete(@RequestBody Long[] catIds){
 		categoryService.removeByIds(Arrays.asList(catIds));
 
+        categoryService.removeMenuByIds(Arrays.asList(catIds));
+
         return R.ok();
     }
-
 }
