@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.codeyyt.gulimall.product.entity.AttrGroupEntity;
+import com.codeyyt.gulimall.product.service.AttrAttrgroupRelationService;
+import com.codeyyt.gulimall.product.service.AttrGroupService;
+import com.codeyyt.gulimall.product.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +35,14 @@ public class AttrController {
     @Autowired
     private AttrService attrService;
 
+    @Autowired
+    private AttrGroupService attrGroupService;
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    AttrAttrgroupRelationService relationService;
     /**
      * 列表
      */
@@ -42,17 +54,33 @@ public class AttrController {
         return R.ok().put("page", page);
     }
 
+    /**
+     * 信息
+     */
+    @RequestMapping("/info/{attrGroupId}")
+    //@RequiresPermissions("product:attrgroup:info")
+    public R info(@PathVariable("attrGroupId") Long attrGroupId){
+        AttrGroupEntity attrGroup = attrGroupService.getById(attrGroupId);
+
+        Long catelogId = attrGroup.getCatelogId();
+        Long[] path = categoryService.findCatelogPath(catelogId);
+
+        attrGroup.setCatelogPath(path);
+
+        return R.ok().put("attrGroup", attrGroup);
+    }
+
 
     /**
      * 信息
      */
-    @RequestMapping("/info/{attrId}")
-    //@RequiresPermissions("product:attr:info")
-    public R info(@PathVariable("attrId") Long attrId){
-		AttrEntity attr = attrService.getById(attrId);
-
-        return R.ok().put("attr", attr);
-    }
+//    @RequestMapping("/info/{attrId}")
+//    //@RequiresPermissions("product:attr:info")
+//    public R info(@PathVariable("attrId") Long attrId){
+//		AttrEntity attr = attrService.getById(attrId);
+//
+//        return R.ok().put("attr", attr);
+//    }
 
     /**
      * 保存
