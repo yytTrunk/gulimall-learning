@@ -25,6 +25,14 @@ spring:
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment}
 
+        # 配置路由至gulimall-ware服务
+        - id: ware_route
+          uri: lb://gulimall-ware
+          predicates:
+            - Path=/api/ware/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
         # 路由到renren-fast,这条要放到最后匹配
         - id: admin_route
           uri: lb://renren-fast
@@ -37,4 +45,4 @@ server:
   port: 88
 logging:
     level:
-      com.codeyyt.gulimall.product: debug   # 设置当前区域日志打印级别为debug
+      com.codeyyt.gulimall: debug   # 设置当前区域日志打印级别为debug

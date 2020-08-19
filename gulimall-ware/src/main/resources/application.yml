@@ -1,9 +1,17 @@
 spring:
+  application:
+    name: gulimall-ware
   datasource:
     username: root
     password: root
     url: jdbc:mysql://192.168.160.128:3306/gulimall_wms?serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
@@ -15,4 +23,4 @@ server:
   port: 10001
 logging:
   level:
-    com.codeyyt.gulimail: debug   # 设置当前区域日志打印级别为debug
+    com.codeyyt.gulimall.ware: debug   # 设置当前区域日志打印级别为debug
