@@ -49,7 +49,7 @@ public class SkuImagesController {
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("product:skuimages:info")
     public R info(@PathVariable("id") Long id){
-		SkuImagesEntity skuImages = skuImagesService.getById(id);
+        SkuImagesEntity skuImages = skuImagesService.getById(id);
 
         return R.ok().put("skuImages", skuImages);
     }
@@ -60,7 +60,7 @@ public class SkuImagesController {
     @RequestMapping("/save")
     //@RequiresPermissions("product:skuimages:save")
     public R save(@RequestBody SkuImagesEntity skuImages){
-		skuImagesService.save(skuImages);
+        skuImagesService.save(skuImages);
 
         return R.ok();
     }
@@ -71,7 +71,7 @@ public class SkuImagesController {
     @RequestMapping("/update")
     //@RequiresPermissions("product:skuimages:update")
     public R update(@RequestBody SkuImagesEntity skuImages){
-		skuImagesService.updateById(skuImages);
+        skuImagesService.updateById(skuImages);
 
         return R.ok();
     }
@@ -82,9 +82,8 @@ public class SkuImagesController {
     @RequestMapping("/delete")
     //@RequiresPermissions("product:skuimages:delete")
     public R delete(@RequestBody Long[] ids){
-		skuImagesService.removeByIds(Arrays.asList(ids));
+        skuImagesService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }
-
 }

@@ -37,4 +37,4 @@ server:
   port: 88
 logging:
     level:
-      root: debug   # 设置当前区域日志打印级别为debug
+      com.codeyyt.gulimall.product: debug   # 设置当前区域日志打印级别为debug
