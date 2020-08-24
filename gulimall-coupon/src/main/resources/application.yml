@@ -1,9 +1,15 @@
 spring:
+  application:
+    name: gulimall-coupon
   datasource:
     username: root
     password: root
     url: jdbc:mysql://192.168.160.128:3306/gulimall_sms?serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
@@ -12,7 +18,7 @@ mybatis-plus:
       id-type: auto  # 设置mybatis-plus默认生成键为自增
 
 server:
-  port: 10004
+  port: 10002
 logging:
   level:
     com.codeyyt.gulimail: debug   # 设置当前区域日志打印级别为debug

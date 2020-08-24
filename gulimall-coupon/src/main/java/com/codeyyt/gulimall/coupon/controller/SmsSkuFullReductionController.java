@@ -26,7 +26,7 @@ import com.codeyyt.gulimall.common.utils.R;
  * @date 2020-08-05 00:08:16
  */
 @RestController
-@RequestMapping("coupon/smsskufullreduction")
+@RequestMapping("coupon/skufullreduction")
 public class SmsSkuFullReductionController {
     @Autowired
     private SmsSkuFullReductionService smsSkuFullReductionService;

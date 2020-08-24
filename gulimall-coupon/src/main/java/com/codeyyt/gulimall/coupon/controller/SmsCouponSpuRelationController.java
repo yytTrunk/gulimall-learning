@@ -26,7 +26,7 @@ import com.codeyyt.gulimall.common.utils.R;
  * @date 2020-08-05 00:08:16
  */
 @RestController
-@RequestMapping("coupon/smscouponspurelation")
+@RequestMapping("coupon/couponspurelation")
 public class SmsCouponSpuRelationController {
     @Autowired
     private SmsCouponSpuRelationService smsCouponSpuRelationService;

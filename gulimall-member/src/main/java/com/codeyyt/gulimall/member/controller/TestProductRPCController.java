@@ -31,3 +31,5 @@ public class TestProductRPCController {
         return R.ok().put("data", "hello, I am gulimall-member. revcive value = " + params);
     }
 }
+
+

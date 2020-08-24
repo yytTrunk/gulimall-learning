@@ -1,6 +1,5 @@
 package com.codeyyt.gulimall.product.vo;
 
-
 import lombok.Data;
 
 @Data

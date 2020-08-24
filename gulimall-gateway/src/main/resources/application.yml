@@ -33,6 +33,30 @@ spring:
           filters:
             - RewritePath=/api/(?<segment>.*),/$\{segment}
 
+        # 配置路由至gulimall-search服务
+        - id: search_route
+          uri: lb://gulimall-search
+          predicates:
+            - Path=/api/search/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+
+        # 配置路由至gulimall-coupon服务
+        - id: coupon_route
+          uri: lb://gulimall-coupon
+          predicates:
+            - Path=/api/coupon/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+
+        # 配置路由至gulimall-member服务
+        - id: member_route
+          uri: lb://gulimall-member
+          predicates:
+            - Path=/api/member/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+
         # 路由到renren-fast,这条要放到最后匹配
         - id: admin_route
           uri: lb://renren-fast

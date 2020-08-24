@@ -10,6 +10,11 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  thymeleaf:
+    cache: false
+
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
@@ -18,7 +23,7 @@ mybatis-plus:
       id-type: auto  # 设置mybatis-plus默认生成键为自增
 
 server:
-  port: 10000
+  port: 10009
 logging:
   level:
     com.codeyyt.gulimall: debug   # 设置当前区域日志打印级别为debug

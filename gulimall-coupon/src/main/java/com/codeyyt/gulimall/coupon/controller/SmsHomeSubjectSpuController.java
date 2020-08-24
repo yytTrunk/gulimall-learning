@@ -26,7 +26,7 @@ import com.codeyyt.gulimall.common.utils.R;
  * @date 2020-08-05 00:08:16
  */
 @RestController
-@RequestMapping("coupon/smshomesubjectspu")
+@RequestMapping("coupon/homesubjectspu")
 public class SmsHomeSubjectSpuController {
     @Autowired
     private SmsHomeSubjectSpuService smsHomeSubjectSpuService;

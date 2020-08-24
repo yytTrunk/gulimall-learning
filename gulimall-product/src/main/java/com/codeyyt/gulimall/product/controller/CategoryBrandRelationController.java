@@ -65,9 +65,7 @@ public class CategoryBrandRelationController {
         }).collect(Collectors.toList());
 
         return R.ok().put("data",collect);
-
     }
-
 
     /**
      * 列表
