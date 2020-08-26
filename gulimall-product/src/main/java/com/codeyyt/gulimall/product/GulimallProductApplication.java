@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@MapperScan("com.codeyyt.gulimall.product.dao")
 @EnableFeignClients(basePackages = "com.codeyyt.gulimall.product.fegin")
 @EnableDiscoveryClient
 @SpringBootApplication

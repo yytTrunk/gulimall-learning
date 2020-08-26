@@ -1,7 +1,9 @@
 package com.codeyyt.gulimall.product.service.impl;
 
 import com.codeyyt.gulimall.product.service.CategoryBrandRelationService;
+import com.codeyyt.gulimall.product.vo.Catalog2Vo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -108,6 +110,50 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     public void updateCascade(CategoryEntity category) {
         this.updateById(category);
         categoryBrandRelationService.updateCategory(category.getCatId(),category.getName());
+    }
+
+    @Override
+    public List<CategoryEntity> getLevel1Category() {
+        return this.baseMapper.selectList(new QueryWrapper<CategoryEntity>().eq("parent_cid", 0));
+    }
+
+    @Cacheable(value = "category",key="'catalogJson'",sync = true)
+    @Override
+    public Map<String, List<Catalog2Vo>> getCatalogJson() {
+        // 从数据库查出所有分类
+        List<CategoryEntity> categoryAll = this.baseMapper.selectList(null);
+
+
+        List<CategoryEntity> level1Category = getParent_cid(categoryAll, 0L);
+
+        Map<String, List<Catalog2Vo>> map = level1Category.stream().collect(Collectors.toMap(k -> k.getCatId().toString(), v -> {
+            List<CategoryEntity> level2Category = getParent_cid(categoryAll, v.getCatId());
+            List<Catalog2Vo> catalog2Vos = null;
+            if (level2Category != null && level1Category.size() > 0) {
+                catalog2Vos = level2Category.stream().map(item -> {
+
+                    Catalog2Vo catalog2Vo = new Catalog2Vo(v.getCatId().toString(), null, item.getCatId().toString(), item.getName());
+
+                    List<CategoryEntity> level3Category = getParent_cid(categoryAll, item.getCatId());
+                    if (level3Category != null && level3Category.size() > 0) {
+                        List<Catalog2Vo.Catalog3Vo> catalog3Vos = level3Category.stream().map(level3 -> {
+                            return new Catalog2Vo.Catalog3Vo(item.getCatId().toString(), level3.getCatId().toString(), level3.getName());
+                        }).collect(Collectors.toList());
+                        catalog2Vo.setCatalog3List(catalog3Vos);
+                    }
+
+                    return catalog2Vo;
+                }).collect(Collectors.toList());
+            }
+            return catalog2Vos;
+        }));
+
+        return map;
+    }
+
+    private List<CategoryEntity> getParent_cid(List<CategoryEntity> categoryAll, Long parentCid) {
+        return categoryAll.stream().filter(item -> item.getParentCid() == parentCid).collect(Collectors.toList());
+        //return this.baseMapper.selectList(new QueryWrapper<CategoryEntity>().eq("parent_cid", v.getCatId()));
     }
 
     //225,25,2
