@@ -2,6 +2,7 @@ package com.codeyyt.gulimall.product.controller;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -11,11 +12,7 @@ import com.codeyyt.gulimall.common.valid.UpdateStatusGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.codeyyt.gulimall.product.entity.BrandEntity;
 import com.codeyyt.gulimall.product.service.BrandService;
@@ -58,6 +55,17 @@ public class BrandController {
         BrandEntity brand = brandService.getById(brandId);
 
         return R.ok().put("brand", brand);
+    }
+
+    /**
+     * 信息
+     */
+    @GetMapping("/infos")
+    //@RequiresPermissions("product:brand:info")
+    public R infos(@RequestParam("brandIds") List<Long> brandIds){
+        List<BrandEntity> brands = brandService.getByIds(brandIds);
+
+        return R.ok().put("brands", brands);
     }
 
     /**

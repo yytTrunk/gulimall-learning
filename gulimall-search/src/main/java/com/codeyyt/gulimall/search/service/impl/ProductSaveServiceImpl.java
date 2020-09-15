@@ -2,7 +2,7 @@ package com.codeyyt.gulimall.search.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.codeyyt.gulimall.common.to.es.SkuEsModel;
-import com.codeyyt.gulimall.search.config.GulimallElasticSearchConfig;
+import com.codeyyt.gulimall.search.config.ESConfig;
 import com.codeyyt.gulimall.search.constant.ESConstant;
 import com.codeyyt.gulimall.search.service.ProductSaveService;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +39,7 @@ public class ProductSaveServiceImpl implements ProductSaveService {
 
             bulkRequest.add(indexRequest);
         }
-        BulkResponse bulk = restHighLevelClient.bulk(bulkRequest, GulimallElasticSearchConfig.COMMON_OPTIONS);
+        BulkResponse bulk = restHighLevelClient.bulk(bulkRequest, ESConfig.COMMON_OPTIONS);
 
         // TODO 如果批量错误
         boolean b = bulk.hasFailures();

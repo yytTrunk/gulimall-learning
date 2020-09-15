@@ -15,10 +15,10 @@ public class ItemController {
     @Autowired
     SkuInfoService skuInfoService;
 
-//    @GetMapping("/{skuId}.html")
-//    public String skuItem(@PathVariable("skuId") Long skuId, Model model) throws ExecutionException, InterruptedException {
-//        SkuItemVo skuItemVo = skuInfoService.item(skuId);
-//        model.addAttribute("item", skuItemVo);
-//        return "item";
-//    }
+    @GetMapping("/product/item/{skuId}.html")
+    public String skuItem(@PathVariable("skuId") Long skuId, Model model) throws ExecutionException, InterruptedException {
+        SkuItemVo skuItemVo = skuInfoService.item(skuId);
+        model.addAttribute("item", skuItemVo);
+        return "item";
+    }
 }

@@ -12,7 +12,7 @@ mybatis-plus:
       id-type: auto  # 设置mybatis-plus默认生成键为自增
 
 server:
-  port: 10002
+  port: 10003
 logging:
   level:
     com.codeyyt.gulimail: debug   # 设置当前区域日志打印级别为debug

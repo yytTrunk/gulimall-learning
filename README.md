@@ -331,13 +331,19 @@ public Map<String, List<Catalog2Vo>> getCatalogJsonFromDbWithRedissonLock() {
 }
 ```
 
+## 十二 检索服务elasticSearch
+
+### 12.1 商品筛选页跳转
+
+### 12.2 商品筛选
 
 
 
+## 十三 商品详情页异步编排
 
+### 13.1 异步编排CompletableFuture解释
 
-
-
+### 13.2 
 
 
 
