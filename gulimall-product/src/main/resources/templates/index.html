@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -95,10 +95,11 @@
   					</b>
         <ul>
           <li>
-            <a href="/登录页面\index.html">你好，请登录</a>
+            <a  th:if="${session.loginUser !=null}">Welcome,[[${session.loginUser.nickname}]]</a>
+            <a style="color: red" href="http://localhost:88/api/auth/login.html" th:if="${session.loginUser==null}">你好，请登录</a>
           </li>
           <li>
-            <a href="/注册页面\index.html" class="li_2">免费注册</a>
+            <a href="http://localhost:88/api/auth/reg.html" class="li_2">免费注册</a>
           </li>
           <span>|</span>
           <li>

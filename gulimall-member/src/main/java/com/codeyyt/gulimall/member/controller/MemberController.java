@@ -3,12 +3,13 @@ package com.codeyyt.gulimall.member.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.codeyyt.gulimall.common.exception.BizCodeEnum;
+import com.codeyyt.gulimall.member.exception.PhoneExistException;
+import com.codeyyt.gulimall.member.exception.UsernameExistException;
+import com.codeyyt.gulimall.member.vo.MemberLoginVo;
+import com.codeyyt.gulimall.member.vo.MemberRegistVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.codeyyt.gulimall.member.entity.MemberEntity;
 import com.codeyyt.gulimall.member.service.MemberService;
@@ -82,6 +83,34 @@ public class MemberController {
 		memberService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
+    }
+
+    /**
+     * 注册
+     */
+    @PostMapping("/regist")
+    public R regist(@RequestBody MemberRegistVo memberRegistVo){
+        try{
+            memberService.regist(memberRegistVo);
+        }catch (PhoneExistException e){
+            return R.error(BizCodeEnum.PHONE_EXIST_EXCEPTION.getCode(), BizCodeEnum.PHONE_EXIST_EXCEPTION.getMsg());
+        }catch (UsernameExistException e){
+            return R.error(BizCodeEnum.USER_EXIST_EXCEPTION.getCode(),BizCodeEnum.USER_EXIST_EXCEPTION.getMsg());
+        }
+
+
+        return R.ok();
+    }
+
+    @PostMapping("/login")
+    public R login(@RequestBody MemberLoginVo vo){
+        MemberEntity entity = memberService.login(vo);
+        if(entity!= null){
+            return R.ok().put("data",entity);
+
+        }else {
+            return R.error(BizCodeEnum.LOGINACCI_PASSWORD_INVALID_EXCEPTION.getCode(),BizCodeEnum.LOGINACCI_PASSWORD_INVALID_EXCEPTION.getMsg());
+        }
     }
 
 }
