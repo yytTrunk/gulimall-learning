@@ -341,9 +341,31 @@ public Map<String, List<Catalog2Vo>> getCatalogJsonFromDbWithRedissonLock() {
 
 ## 十三 商品详情页异步编排
 
-### 13.1 异步编排CompletableFuture解释
+### 13.1 商品详情页展示
 
-### 13.2 
+### 13.2 异步编排CompletableFuture
+
+### 
+
+## 十四 认证服务
+
+### 14.1 注册
+
+### 14.2 手机验证码（未调试）
+
+### 14.3 用户密码登录
+
+### 14.4 微博登录（未调试）
+
+### 14.5 spring-session共享
+
+### 14.6 单点登录（未完成）
+
+
+
+## 十五 购物车服务
+
+
 
 
 

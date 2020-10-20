@@ -55,8 +55,9 @@
 							</li>
 						</ul>
 						<ul class="header_ul_right">
-							<li style="border: 0;"><a href="../登录页面\index.html" class="aa">你好，请登录</a></li>
-							<li><a href="../注册页面\index.html" style="color: red;">免费注册</a> |</li>
+							<a  th:if="${session.loginUser !=null}" style="width: 100px">Welcome,[[${session.loginUser.nickname}]]</a>
+							<a style="color: #ff0000" href="http://localhost:88/api/auth/login.html" th:if="${session.loginUser ==null}">您好，请登录</a>
+							<li><a href="http://localhost:88/api/auth/reg.html" th:if="${session.loginUser ==null}" class="li_2">免费注册</a> |</li>
 							<li><a href="javascript:;" class="aa">我的订单</a> |</li>
 						</ul>
 					</div>
@@ -930,7 +931,7 @@
 		$("#addToCartA").click(function () {
 			var  num = $("#numInput").val();
 			var skuId = $(this).attr("skuId");
-			location.href = "http://cart.littlemall.com/addToCart?skuId="+ skuId +"&num="+num;
+			location.href = "http://localhost:88/api/cart/addToCart?skuId="+ skuId +"&num="+num;
 			return false;
 		});
 	</script>

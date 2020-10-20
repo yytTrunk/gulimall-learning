@@ -65,6 +65,14 @@ spring:
           filters:
             - RewritePath=/api/auth/(?<segment>/?.*), /$\{segment}
 
+        # 配置路由至gulimall-cart服务
+        - id: auth-route
+          uri: lb://gulimall-cart
+          predicates:
+            - Path=/api/cart/**
+          filters:
+            - RewritePath=/api/cart/(?<segment>/?.*), /$\{segment}
+
         # 路由到renren-fast,这条要放到最后匹配
         - id: admin_route
           uri: lb://renren-fast
