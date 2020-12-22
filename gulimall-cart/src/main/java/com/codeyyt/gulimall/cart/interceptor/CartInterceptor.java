@@ -4,6 +4,7 @@ import com.codeyyt.gulimall.cart.vo.UserInfoTo;
 import com.codeyyt.gulimall.common.constant.AuthServerConstant;
 import com.codeyyt.gulimall.common.constant.CartConstant;
 import com.codeyyt.gulimall.common.vo.MemberVo;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,14 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.UUID;
 
-
+@Component
 public class CartInterceptor implements HandlerInterceptor {
 
     public static ThreadLocal<UserInfoTo> threadLocal = new ThreadLocal<>();
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
         UserInfoTo user = new UserInfoTo();
         HttpSession session = request.getSession();
         MemberVo memberVo = (MemberVo) session.getAttribute(AuthServerConstant.LOGIN_USER);

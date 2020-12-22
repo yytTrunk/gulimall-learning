@@ -87,7 +87,7 @@ public class CartController {
     public List<CartItemVo> getCurrentUserCartItems(){
 
         List<CartItemVo> userCartItems = cartService.getUserCartItems();
-        //log.info("进入getCurrentUserCartItems {}" , userCartItems.size());
+        log.info("进入getCurrentUserCartItems {}" , userCartItems.size());
         return userCartItems;
     }
 

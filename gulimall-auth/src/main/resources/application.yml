@@ -21,3 +21,5 @@ logging:
   level:
     com.codeyyt.gulimall: debug   # \u8BBE\u7F6E\u5F53\u524D\u533A\u57DF\u65E5\u5FD7\u6253\u5370\u7EA7\u522B\u4E3Adebug
 
+# default
+#

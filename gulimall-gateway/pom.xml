@@ -38,6 +38,10 @@
                     <groupId>com.alibaba.cloud</groupId>
                     <artifactId>spring-cloud-alibaba-nacos-config</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>com.alibaba.cloud</groupId>
+                    <artifactId>spring-cloud-alibaba-seata</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
 

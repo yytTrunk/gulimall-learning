@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.codeyyt.gulimall.common.exception.BizCodeEnum;
 import com.codeyyt.gulimall.common.to.SkuHasStockVo;
+import com.codeyyt.gulimall.ware.vo.WareSkuLockVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,7 +49,6 @@ public class WareSkuController {
     @PostMapping("/hasstock")
     public R getSkusHasStock(@RequestBody List<Long> skuIds){
         // sku_id, has_stock
-
         List<SkuHasStockVo> vos = wareSkuService.getSkusHasStock(skuIds);
         return R.ok().put("data",vos);
     }
@@ -94,6 +95,16 @@ public class WareSkuController {
 		wareSkuService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
+    }
+
+    @PostMapping("/lock/order")
+    public R orderLockStock(@RequestBody WareSkuLockVo vo){
+        try {
+            wareSkuService.orderLockStock(vo);
+            return R.ok();
+        }catch (Exception e){
+            return R.error(BizCodeEnum.NO_STOCK_EXCEPTION.getCode(),BizCodeEnum.NO_STOCK_EXCEPTION.getMsg());
+        }
     }
 
 }

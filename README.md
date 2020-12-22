@@ -369,15 +369,36 @@ public Map<String, List<Catalog2Vo>> getCatalogJsonFromDbWithRedissonLock() {
 
 
 
+## 十六 订单服务
 
+### 16.1 消息队列rabbitMQ
 
+### 16.2 分布式事务
 
+不使用分布式事务，只能控制本地事务，远程调用服务的事务，不能控制
 
+#### 16.2.1 seata
 
+##### 使用
 
+1. 每个微服务先创建undo_log表
+2. 安装事务协调器seata-server
+3. 导入依赖，配置register.conf，启动Server，
+4. Seata 通过代理数据源实现分支事务，如果没有注入，事务无法成功回滚，使用seata代理数据源
+5. 每个微服务需要导入file.conf, registry.conf
 
+> https://github.com/seata/seata-samples/tree/master/springcloud-jpa-seata
+>
 
+使用seata AT模式难以适用高并发情况，
 
+#### 16.2.3 RabbitMQ
+
+使用RabbitMQ，最大努力通知方式，保证下单、支付最终一致性
+
+使用延迟队列处理
+
+处理消息丢失、积压，重复问题
 
 
 

@@ -10,6 +10,17 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+  rabbitmq:
+    host: 192.168.160.128
+    virtual-host: /
+    listener:
+      simple:
+        acknowledge-mode: manual
+    publisher-returns: true
+    publisher-confirm-type: correlated
+    port: 5672
+    username: guest
+    password: guest
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
 

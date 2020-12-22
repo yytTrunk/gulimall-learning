@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class CartServiceImpl implements CartService {
 
-    private static final String CART_PREFIX = "littlemall:cart:";
+    private static final String CART_PREFIX = "gulimall:cart:";
 
     @Autowired
     StringRedisTemplate redisTemplate;
